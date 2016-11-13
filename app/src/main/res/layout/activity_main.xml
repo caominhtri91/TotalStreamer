@@ -6,4 +6,5 @@
     android:layout_height="match_parent"
     tools:context="vn.edu.poly.totalstreamer.MainActivity">
 
+    <include layout="@layout/custom_toolbar" />
 </RelativeLayout>
