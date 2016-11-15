@@ -6,25 +6,30 @@ package vn.edu.poly.totalstreamer.Entities;
 
 public class User {
     private String fullname;
+    private int age;
     private int gender;
     private int subscription;
-    private byte[] avatar;
+    private String avatar;
+
 
     public User() {
         this.fullname = "";
+        this.age = -1;
         this.gender = -1;
         this.subscription = -1;
         this.avatar = null;
     }
 
-    public User(String fullname, int gender, int subscription) {
+    public User(String fullname, int age, int gender, int subscription) {
         this.fullname = fullname;
         this.gender = gender;
         this.subscription = subscription;
+        this.age = age;
     }
 
-    public User(String fullname, int gender, int subscription, byte[] avatar) {
+    public User(String fullname, int age, int gender, int subscription, String avatar) {
         this.fullname = fullname;
+        this.age = age;
         this.gender = gender;
         this.subscription = subscription;
         this.avatar = avatar;
@@ -54,11 +59,19 @@ public class User {
         this.subscription = subscription;
     }
 
-    public byte[] getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(byte[] avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     // User is signed out
                     Log.d("Tri", "onAuthStateChanged:signed_out");
+                    restoringPreferences();
                 }
             }
         };
@@ -107,8 +108,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int whichButton) {
                 if (validateForm(email, password)) {
                     signIn(email.getText().toString(), password.getText().toString());
+                } else {
+                    Toast.makeText(MainActivity.this, "You must enter email and password", Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(MainActivity.this, "You must enter email and password", Toast.LENGTH_SHORT).show();
             }
         });
         dialogBuilder.setNegativeButton("Sign Up", new DialogInterface.OnClickListener() {
@@ -125,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        restoringPreferences();
+//        restoringPreferences();
     }
 
     private void restoringPreferences() {
