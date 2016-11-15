@@ -12,18 +12,28 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import vn.edu.poly.totalstreamer.Entities.User;
 
 public class SignUpActivity extends AppCompatActivity {
 
     private static final String filename = "user_account";
     Button signUpButton;
     EditText email, password, fullname;
+    Spinner age;
+    RadioButton male, female;
+    ImageView avatar;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
 
@@ -35,9 +45,13 @@ public class SignUpActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        avatar = (ImageView) findViewById(R.id.imageView);
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         fullname = (EditText) findViewById(R.id.fullname);
+        age = (Spinner) findViewById(R.id.spinner);
+        male = (RadioButton) findViewById(R.id.radioButton);
+        female = (RadioButton) findViewById(R.id.radioButton2);
         signUpButton = (Button) findViewById(R.id.signUpButton);
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
@@ -77,7 +91,14 @@ public class SignUpActivity extends AppCompatActivity {
                         // [START_EXCLUDE]
                         progressDialog.dismiss();
                         savingPreferences(em, pw);
-//                        signIn(em, pw);
+                        signIn(em, pw);
+
+                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                        DatabaseReference databaseReference = firebaseDatabase.getReference();
+
+                        User user = new User();
+
+
                         Intent i = new Intent(SignUpActivity.this, MainActivity.class);
                         startActivity(i);
                         // [END_EXCLUDE]
@@ -141,5 +162,21 @@ public class SignUpActivity extends AppCompatActivity {
                         // [END_EXCLUDE]
                     }
                 });
+    }
+
+    private User generateUserInformation() {
+        String fn = fullname.getText().toString();
+
+        int gen = -1;
+        if (male.isSelected()) {
+            gen = 1;
+        } else if (female.isSelected()) {
+            gen = 0;
+        }
+
+        int sub = -1;
+
+        User user = new User(fn, gen, sub);
+        return user;
     }
 }

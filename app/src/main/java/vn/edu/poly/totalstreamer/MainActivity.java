@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showLoginDialog() {
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View dialogView = inflater.inflate(R.layout.custom_dialog_login, null);
         dialogBuilder.setView(dialogView);
@@ -104,7 +105,10 @@ public class MainActivity extends AppCompatActivity {
         dialogBuilder.setTitle("Login");
         dialogBuilder.setPositiveButton("Login", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                signIn(email.getText().toString(), password.getText().toString());
+                if (validateForm(email, password)) {
+                    signIn(email.getText().toString(), password.getText().toString());
+                }
+                Toast.makeText(MainActivity.this, "You must enter email and password", Toast.LENGTH_SHORT).show();
             }
         });
         dialogBuilder.setNegativeButton("Sign Up", new DialogInterface.OnClickListener() {
@@ -164,5 +168,27 @@ public class MainActivity extends AppCompatActivity {
     private void updateUI() {
         ActionMenuItemView loginButton = (ActionMenuItemView) findViewById(R.id.loginButton);
         loginButton.setVisibility(View.GONE);
+    }
+
+    private boolean validateForm(EditText email, EditText password) {
+        boolean valid = true;
+
+        String emText = email.getText().toString();
+        if (TextUtils.isEmpty(emText)) {
+            email.setError("Required.");
+            valid = false;
+        } else {
+            email.setError(null);
+        }
+
+        String pwText = password.getText().toString();
+        if (TextUtils.isEmpty(pwText)) {
+            password.setError("Required.");
+            valid = false;
+        } else {
+            password.setError(null);
+        }
+
+        return valid;
     }
 }
