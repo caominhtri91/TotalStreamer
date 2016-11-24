@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="vn.edu.poly.totalstreamer.SignUpActivity">
+    tools:context="vn.edu.poly.totalstreamer.activities.SignUpActivity">
 
     <include layout="@layout/custom_toolbar" />
 

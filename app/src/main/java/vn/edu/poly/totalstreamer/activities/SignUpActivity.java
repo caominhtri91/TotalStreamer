@@ -1,4 +1,4 @@
-package vn.edu.poly.totalstreamer;
+package vn.edu.poly.totalstreamer.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -35,7 +35,8 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import vn.edu.poly.totalstreamer.Entities.User;
+import vn.edu.poly.totalstreamer.R;
+import vn.edu.poly.totalstreamer.entities.User;
 
 public class SignUpActivity extends AppCompatActivity {
 

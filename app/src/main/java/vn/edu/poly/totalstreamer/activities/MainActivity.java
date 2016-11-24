@@ -1,4 +1,4 @@
-package vn.edu.poly.totalstreamer;
+package vn.edu.poly.totalstreamer.activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,12 +27,16 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import vn.edu.poly.totalstreamer.R;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String filename = "user_account";
     FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener firebaseAuthListener;
     ProgressDialog progressDialog;
+
+    ImageView twitchImage, youtubeImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        twitchImage = (ImageView) findViewById(R.id.imageView);
+        youtubeImage = (ImageView) findViewById(R.id.imageView2);
 
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
@@ -60,11 +68,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+        twitchImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, TwitchGamesActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override

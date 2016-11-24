@@ -4,10 +4,14 @@
 
     </style>
 
-    <style name="AppThemeBase" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppThemeBase" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="ChannelStyle" parent="AppThemeBase">
+        <item name="android:textColor">#fff</item>
     </style>
 
 </resources>
