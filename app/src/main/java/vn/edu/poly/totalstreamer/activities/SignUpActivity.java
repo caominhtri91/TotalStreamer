@@ -241,11 +241,6 @@ public class SignUpActivity extends AppCompatActivity {
         return encodedImage;
     }
 
-    // If you want to decode the image...
-//    byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
-//    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-//    myimageview.setImageBitmap(decodedByte);
-
     // Generate age value for spinner
     private List generateAgeSpinner() {
         List ageList = new ArrayList();

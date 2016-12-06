@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_twitch_channels"
+    android:id="@+id/content_twitch_channel"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="vn.edu.poly.totalstreamer.activities.TwitchChannelsActivity">
-
-    <include
-        android:id="@+id/myToolbar"
-        layout="@layout/custom_toolbar" />
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="vn.edu.poly.totalstreamer.activities.TwitchChannelActivity"
+    tools:showIn="@layout/app_bar_twitch_game">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/gameList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/myToolbar"
         android:padding="4dp" />
+
 </RelativeLayout>

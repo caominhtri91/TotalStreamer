@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 import vn.edu.poly.totalstreamer.R;
-import vn.edu.poly.totalstreamer.activities.TwitchChannelsActivity;
+import vn.edu.poly.totalstreamer.activities.TwitchChannelActivity;
 import vn.edu.poly.totalstreamer.entities.GameEntity;
 import vn.edu.poly.totalstreamer.extras.ConstantValue;
 import vn.edu.poly.totalstreamer.myLog.L;
@@ -85,7 +85,7 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.MyView
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(context, TwitchChannelsActivity.class);
+                    Intent i = new Intent(context, TwitchChannelActivity.class);
                     GameEntity gameEntity = games.get(getAdapterPosition());
                     i.putExtra("gameName", gameEntity.getName());
                     context.startActivity(i);
